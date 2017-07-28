@@ -603,7 +603,11 @@ class EE_Command extends WP_CLI_Command {
 	 * Connects to database
 	 */
 	public function _connect_to_db() {
-		$this->conn = new mysqli( $this->server_name, $this->username, $this->password );
+		if ( ! empty( $_ENV['MYSQL_HOST'] ) && ! empty( $_ENV['MYSQL_USER'] ) && empty( $_ENV['MYSQL_PASSWORD'] ) ) {
+			$this->conn = new mysqli( $_ENV['MYSQL_HOST'], $_ENV['MYSQL_USER'], $_ENV['MYSQL_PASSWORD'] );
+		} else {
+			$this->conn = new mysqli( $this->server_name, $this->username, $this->password );
+		}
 
 		if ( $this->conn->connect_error ) {
 			WP_CLI::error( 'Connection failed: ' . $this->conn->connect_error );
