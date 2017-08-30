@@ -1,5 +1,5 @@
 {
-    "name": "Sidsector9/ee-command2",
+    "name": "Sidsector9/ee-command",
     "description": "Commands for EE Engine using WP-CLI",
     "type": "wp-cli-package",
     "license": "GPL",
